@@ -45,28 +45,21 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public String getStudentByStudentId(String studentId) {
         //TODO 请在此处补全业务逻辑
-        Student student=studentMapper.getId(studentId);
-        if(student==null){
-            return "学生不存在";
-        }
-        else{
-            return student.toString();
-        }
+      if (studentMapper.getId(studentId)!=null) return studentMapper.getId(studentId);
+      else return "您输入的学号不存在";
     }
 
     @Override
     public String getStudentsByClassName(String className) {
         //TODO 请在此处补全业务逻辑
-        if (studentMapper.getClass(className).equals("")){
-            return "该班级暂无学生";
-        }else{
-        return studentMapper.getClass(className);}
+        if (studentMapper.getClass(className).isEmpty()) return "该班级暂无学生";
+        else return studentMapper.getClass(className);
     }
 
     @Override
     public String getAllStudents() {
         //TODO 请在此处补全业务逻辑
-        if (studentMapper.getAll().equals("")){
+        if (studentMapper.getAll().isEmpty()){
             return "暂无学生数据";
         }else{
             return studentMapper.getAll();

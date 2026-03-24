@@ -20,7 +20,7 @@ public interface StudentMapper {
 
     //TODO 请在此处补全操作HashMap所需的方法
     //查询学生
-    Student getId(String studentId);
+    String getId(String studentId);
     String getClass(String className);
     String getAll();
     boolean update(Student student);

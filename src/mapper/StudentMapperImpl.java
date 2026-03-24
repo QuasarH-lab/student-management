@@ -26,33 +26,52 @@ public class StudentMapperImpl implements StudentMapper {
         return true;
     }
     //TODO 请在此处补全操作HashMap数据库所需的方法的实现
-    public Student getId(String studentId) { //按学号
+    public String getId(String studentId) { //按学号
+
         if (studentMap.containsKey(studentId)) {
             {
-                return studentMap.get(studentId);
+                Student student=studentMap.get(studentId);
+                return "学号："+student.getStudentId()+"，"+"姓名:"+student.getClassName()+"，"
+                        +"性别："+student.getGender()+"，"+"年龄："+student.getAge()+"，"+"班级："
+                        +student.getClassName()+"，"+"专业:"+student.getMajor()+"；";
             }
         }
         return null;//查询失败
     }
     public String getClass(String className){  //按班级
         StringBuilder sb = new StringBuilder();
+        int i=0;
+        if(className.isEmpty()) return sb.toString();//班级不得为空
         for(Student student: studentMap.values()){
-            if(student.getClassName().contains(className)) sb.append(student).append("\n");
+            if(student.getClassName().contains(className)) {
+                String str= "学号："+student.getStudentId()+"，"+"姓名:"+student.getClassName()+"，"
+                        +"性别："+student.getGender()+"，"+"年龄："+student.getAge()+"，"+"班级："
+                        +student.getClassName()+"，"+"专业:"+student.getMajor()+"；";
+                sb.append(str).append("\n");
+                i++;
+            }
         }
+        if(i!=0) sb.insert(0,"共找到"+i+"名学生：\n");
         return sb.toString();
     }
     public String getAll(){ //全部学生
         StringBuilder sb = new StringBuilder();
+        int i=0;
         for(Student student: studentMap.values()){
-            sb.append(student).append("\n");
-        }
+                String str= "学号："+student.getStudentId()+"，"+"姓名:"+student.getClassName()+"，"
+                        +"性别："+student.getGender()+"，"+"年龄："+student.getAge()+"，"+"班级："
+                        +student.getClassName()+"，"+"专业:"+student.getMajor()+"；";
+                sb.append(str).append("\n");
+                i++;
+            }
+        if(i!=0) sb.insert(0,"共找到"+i+"名学生：\n");
         return sb.toString();
     }
     public boolean update(Student student) {
         String studentId = student.getStudentId();
         if (studentMap.containsKey(studentId)) {
             Student value=studentMap.get(studentId);
-            if (student.getName() != null) value.setName(student.getName());
+            if(student.getName()!=null) value.setName(student.getName());
             if(student.getAge()!=0) value.setAge(student.getAge());
             if(student.getGender()!=null) value.setGender(student.getGender());
             if(student.getClassName()!=null) value.setClassName(student.getClassName());
@@ -61,7 +80,6 @@ public class StudentMapperImpl implements StudentMapper {
             return true;
         }
             return false;
-
     }
     public boolean delete(String studentId){
         if (studentMap.containsKey(studentId)) {

@@ -167,7 +167,10 @@ public class StudentController {
                     return;
                 }
             }
-        }else System.out.println("修改失败：年龄必须在18-25岁之间！");
+        }else {
+            System.out.println("修改失败：年龄必须在18-25岁之间！");
+            return;
+        }
 
 
 
