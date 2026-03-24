@@ -41,7 +41,7 @@ public class StudentMapperImpl implements StudentMapper {
         }
         return sb.toString();
     }
-    public String getAll(){ //全部
+    public String getAll(){ //全部学生
         StringBuilder sb = new StringBuilder();
         for(Student student: studentMap.values()){
             sb.append(student).append("\n");
