@@ -158,6 +158,7 @@ public class StudentController {
 
         System.out.print("请输入新年龄（18-25，不修改请直接回车）：");
         String ageStr = scanner.nextLine().trim();
+        boolean zero = false;                  //进行修改，避免输入为0时无反馈
         if (!ageStr.equals("0")) {    //进行修改，避免输入为0时无反馈
             if (!ageStr.isEmpty()) {
                 try {
@@ -167,20 +168,19 @@ public class StudentController {
                     return;
                 }
             }
-        }else {
-            System.out.println("修改失败：年龄必须在18-25岁之间！");
-            return;
-        }
-
-
+        } else zero = true;
 
         System.out.print("请输入新班级（不修改请直接回车）：");
         String className = scanner.nextLine().trim();
         student.setClassName(className.isEmpty() ? null : className);
-
         System.out.print("请输入新专业（不修改请直接回车）：");
         String major = scanner.nextLine().trim();
         student.setMajor(major.isEmpty() ? null : major);
+
+        if (zero) {                                  //进行修改，避免输入为0时无反馈,同时使反馈统一                                                                                                                                                                                                                          Q
+            System.out.println("新增失败：年龄必须在18-25岁之间！");
+            return;
+        }
 
         // 调用Service层处理
         String result = studentService.updateStudent(student);
