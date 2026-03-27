@@ -31,7 +31,7 @@ public class StudentMapperImpl implements StudentMapper {
         if (studentMap.containsKey(studentId)) {
             {
                 Student student=studentMap.get(studentId);
-                return "学号："+student.getStudentId()+"，"+"姓名:"+student.getClassName()+"，"
+                return "学号："+student.getStudentId()+"，"+"姓名:"+student.getName()+"，"
                         +"性别："+student.getGender()+"，"+"年龄："+student.getAge()+"，"+"班级："
                         +student.getClassName()+"，"+"专业:"+student.getMajor()+"；";
             }
@@ -44,7 +44,7 @@ public class StudentMapperImpl implements StudentMapper {
         if(className.isEmpty()) return sb.toString();//班级不得为空
         for(Student student: studentMap.values()){
             if(student.getClassName().contains(className)) {
-                String str= "学号："+student.getStudentId()+"，"+"姓名:"+student.getClassName()+"，"
+                String str= "学号："+student.getStudentId()+"，"+"姓名:"+student.getName()+"，"
                         +"性别："+student.getGender()+"，"+"年龄："+student.getAge()+"，"+"班级："
                         +student.getClassName()+"，"+"专业:"+student.getMajor()+"；";
                 sb.append(str).append("\n");
@@ -58,7 +58,7 @@ public class StudentMapperImpl implements StudentMapper {
         StringBuilder sb = new StringBuilder();
         int i=0;
         for(Student student: studentMap.values()){
-                String str= "学号："+student.getStudentId()+"，"+"姓名:"+student.getClassName()+"，"
+                String str= "学号："+student.getStudentId()+"，"+"姓名:"+student.getName()+"，"
                         +"性别："+student.getGender()+"，"+"年龄："+student.getAge()+"，"+"班级："
                         +student.getClassName()+"，"+"专业:"+student.getMajor()+"；";
                 sb.append(str).append("\n");
